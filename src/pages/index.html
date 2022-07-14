@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+  </head>
+  <body>
+    <div class="auth">
+      <div class="auth-container">
+        <div class="auth-container__bg">
+          <div class="auth-container__signIn box">
+            <h2 class="auth-container__title">Already Have an Account?</h2>
+            <button class="auth-container__btn" id="signInBtn">Sign in</button>
+          </div>
+          <div class="auth-container__signUp box">
+            <h2 class="auth-container__title">Dont't Have an Account?</h2>
+            <button class="auth-container__btn" id="signUpBtn">Sign up</button>
+          </div>
+        </div>
+        <div class="auth-container__formBox" id="formBox">
+          <div class="formDiv auth-container__formBox--signInForm">
+            <form class="auth-container__formBox--form">
+              <h3 class="auth-container__formBox--title">Sign In</h3>
+              <input
+                class="auth-container__formBox--input"
+                type="text"
+                placeholder="Username"
+              />
+              <input
+                class="auth-container__formBox--input"
+                type="password"
+                placeholder="Password"
+                autocomplete="on"
+              />
+              <input
+                class="auth-container__formBox--btn"
+                type="submit"
+                value="Login"
+              />
+            </form>
+          </div>
+
+          <div class="formDiv auth-container__formBox--signUpForm">
+            <form class="auth-container__formBox--form">
+              <h3 class="auth-container__formBox--title">Sign Up</h3>
+              <input
+                class="auth-container__formBox--input"
+                type="text"
+                placeholder="Username"
+              />
+              <input
+                class="auth-container__formBox--input"
+                type="password"
+                placeholder="Password"
+                autocomplete="on"
+              />
+              <input
+                class="auth-container__formBox--input"
+                type="password"
+                placeholder="Password"
+                autocomplete="on"
+              />
+              <input
+                class="auth-container__formBox--btn"
+                type="submit"
+                value="Register"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="../scripts/main.js"></script>
+  </body>
+</html>

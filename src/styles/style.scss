@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100&display=swap');
+
+@import 'mixins.scss';
+@import 'command.scss';
+@import 'auth.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  hyphens: auto;
+}
+
+:root {
+  font-size: calc(0.5vw + 10px);
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
