@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&display=swap');
 
 @import 'mixins.scss';
 @import 'command.scss';
 @import 'auth.scss';
+@import 'books.scss';
 
 * {
   margin: 0;

@@ -67,6 +67,10 @@ module.exports = {
           from: path.resolve(__dirname, 'src/scripts'),
           to: path.resolve(__dirname, 'dist/scripts'),
         },
+        {
+          from: path.resolve(__dirname, 'src/api'),
+          to: path.resolve(__dirname, 'dist/api'),
+        },
       ],
     }),
     ...PAGES.map(

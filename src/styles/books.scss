@@ -1,0 +1,63 @@
+.books {
+  @include flex-center-block;
+  transform-style: preserve-3d;
+  flex-wrap: wrap;
+  gap: 50px;
+  perspective: 1000px;
+
+  &__book {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    box-shadow: 20px 20px 20px rgba(#000000, 0.2);
+    transform-style: preserve-3d;
+    transition: 0.5s;
+    user-select: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    &:hover {
+      transform: rotateY(35deg);
+      box-shadow: 0px 20px 20px rgba(#000000, 0.2);
+    }
+
+    &.active {
+      transform: rotateY(180deg);
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 100%;
+      transform-origin: left;
+      background: url('../assets/img/side.jpg');
+      background-position: center;
+      transform: rotateY(90deg);
+    }
+
+    &::after {
+      user-select: none;
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-origin: center;
+      background: url(https://c4.wallpaperflare.com/wallpaper/376/1011/685/mulan-dragon-sword-horse-wallpaper-preview.jpg);
+      background-position: center;
+      transform: rotateY(180deg) translateZ(30px);
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    &--front {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}

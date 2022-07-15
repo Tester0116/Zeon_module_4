@@ -32,7 +32,7 @@
     &__title {
       color: white;
       font-size: 1.2rem;
-      font-weight: 700;
+      font-weight: 500;
       margin-bottom: 10px;
     }
     &__btn {
@@ -40,7 +40,7 @@
       background: #f43648;
       color: white;
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 500;
       border: none;
     }
     &__formBox {
@@ -49,7 +49,7 @@
       left: 0;
       height: 100%;
       width: 50%;
-      background: #555;
+      background: #373737;
       z-index: 2;
       @include flex-center-block;
       box-shadow: 0 5px 45px rgba(black, 0.25);
@@ -80,12 +80,16 @@
         display: flex;
         flex-direction: column;
 
-        & > input {
+        & input {
           width: 100%;
-          margin-bottom: 20px;
+          margin-bottom: 10px;
+
+          background: #292929;
           padding: 10px;
+          border-radius: 6px;
           outline: none;
-          font-weight: 700;
+          color: white;
+          font-weight: 500;
           font-size: 1rem;
           border: 1px solid #333;
         }
@@ -97,11 +101,14 @@
       }
 
       &--btn {
-        background: #03a9f4;
         border: none;
+        margin-top: 10px;
         color: white;
         max-width: 100px;
         cursor: pointer;
+        &:active {
+          background: #f43648;
+        }
       }
       & > &--signUpForm {
         left: 100%;

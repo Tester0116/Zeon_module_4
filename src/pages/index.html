@@ -21,19 +21,26 @@
         </div>
         <div class="auth-container__formBox" id="formBox">
           <div class="formDiv auth-container__formBox--signInForm">
-            <form class="auth-container__formBox--form">
+            <form class="auth-container__formBox--form" id="signInForm">
               <h3 class="auth-container__formBox--title">Sign In</h3>
+
               <input
                 class="auth-container__formBox--input"
                 type="text"
                 placeholder="Username"
+                id="username"
+                required
               />
               <input
                 class="auth-container__formBox--input"
                 type="password"
                 placeholder="Password"
                 autocomplete="on"
+                id="password"
+                required
               />
+              <span class="signInValidaion-text" id="signInErrorText"></span>
+
               <input
                 class="auth-container__formBox--btn"
                 type="submit"
@@ -42,26 +49,57 @@
             </form>
           </div>
 
+          <!-- ***** SIGN UP ***** -->
+
           <div class="formDiv auth-container__formBox--signUpForm">
-            <form class="auth-container__formBox--form">
+            <form class="auth-container__formBox--form" id="signUpForm">
               <h3 class="auth-container__formBox--title">Sign Up</h3>
+
+              <!-- ***** username ***** -->
               <input
                 class="auth-container__formBox--input"
                 type="text"
                 placeholder="Username"
+                id="signUpUsername"
+                required
               />
+
+              <!-- ***** name ***** -->
+              <input
+                class="auth-container__formBox--input"
+                type="text"
+                placeholder="Name"
+                id="name"
+              />
+
+              <!-- ***** age ***** -->
+              <input
+                class="auth-container__formBox--input"
+                type="text"
+                placeholder="Age"
+                id="age"
+              />
+
+              <!-- ***** 1st password ***** -->
               <input
                 class="auth-container__formBox--input"
                 type="password"
                 placeholder="Password"
                 autocomplete="on"
+                id="firstPassword"
+                required
               />
+              <!-- ***** 2nd password ***** -->
               <input
                 class="auth-container__formBox--input"
                 type="password"
-                placeholder="Password"
+                placeholder="Repeat password"
                 autocomplete="on"
+                id="secondPassword"
+                required
               />
+              <span class="signUpValidaion-text" id="signUpError"></span>
+              <!-- ***** submit ***** -->
               <input
                 class="auth-container__formBox--btn"
                 type="submit"
@@ -72,6 +110,6 @@
         </div>
       </div>
     </div>
-    <script type="module" src="../scripts/main.js"></script>
+    <script type="module" src="../scripts/Auth/index.js"></script>
   </body>
 </html>
