@@ -1,0 +1,61 @@
+// START LOADING BTN ANIMATION
+.loader-block {
+  display: inline-block;
+  position: relative;
+  height: 10px;
+  left: -37px;
+}
+.loader-block .loader-elements {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  &.black {
+    background: #333;
+  }
+}
+.loader-block .loader-elements:nth-child(1) {
+  left: 8px;
+  animation: loader-block1 0.6s infinite;
+}
+.loader-block .loader-elements:nth-child(2) {
+  left: 8px;
+  animation: loader-block2 0.6s infinite;
+}
+.loader-block .loader-elements:nth-child(3) {
+  left: 32px;
+  animation: loader-block2 0.6s infinite;
+}
+.loader-block .loader-elements:nth-child(4) {
+  left: 56px;
+  animation: loader-block3 0.6s infinite;
+}
+
+@keyframes loader-block1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes loader-block3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes loader-block2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+// END LOADING BTN ANIMATION

@@ -7,16 +7,20 @@
     <title>Library</title>
   </head>
   <body>
-    <div class="auth">
+    <section class="auth">
       <div class="auth-container">
         <div class="auth-container__bg">
           <div class="auth-container__signIn box">
             <h2 class="auth-container__title">Already Have an Account?</h2>
-            <button class="auth-container__btn" id="signInBtn">Sign in</button>
+            <button class="auth-container__btn" id="slideSignIn">
+              Sign in
+            </button>
           </div>
           <div class="auth-container__signUp box">
             <h2 class="auth-container__title">Dont't Have an Account?</h2>
-            <button class="auth-container__btn" id="signUpBtn">Sign up</button>
+            <button class="auth-container__btn" id="slideSignUp">
+              Sign up
+            </button>
           </div>
         </div>
         <div class="auth-container__formBox" id="formBox">
@@ -41,11 +45,13 @@
               />
               <span class="signInValidaion-text" id="signInErrorText"></span>
 
-              <input
+              <button
                 class="auth-container__formBox--btn"
                 type="submit"
-                value="Login"
-              />
+                id="signInBtn"
+              >
+                Login
+              </button>
             </form>
           </div>
 
@@ -100,16 +106,18 @@
               />
               <span class="signUpValidaion-text" id="signUpError"></span>
               <!-- ***** submit ***** -->
-              <input
+              <button
                 class="auth-container__formBox--btn"
                 type="submit"
-                value="Register"
-              />
+                id="signUpBtn"
+              >
+                Register
+              </button>
             </form>
           </div>
         </div>
       </div>
-    </div>
+    </section>
     <script type="module" src="../scripts/Auth/index.js"></script>
   </body>
 </html>

@@ -7,39 +7,18 @@
     <title>Library</title>
   </head>
   <body>
-    <h1>Books</h1>
+    <div class="books-page">
+      <h1 class="text-center">List of Books</h1>
+      <section class="books">
+        <div class="loader-block" id="booksLoader">
+          <div class="loader-elements black"></div>
+          <div class="loader-elements black"></div>
+          <div class="loader-elements black"></div>
+          <div class="loader-elements black"></div>
+        </div>
+      </section>
+    </div>
 
-    <section class="books">
-      <div class="books__book book">
-        <img
-          class="books__book--front"
-          src="https://w.wallhaven.cc/full/k7/wallhaven-k7q9m7.png"
-          alt="cover"
-        />
-      </div>
-      <div class="books__book book">
-        <img
-          class="books__book--front"
-          src="https://c4.wallpaperflare.com/wallpaper/461/115/579/disney-mulan-hd-wallpaper-preview.jpg"
-          alt="cover"
-        />
-      </div>
-      <div class="books__book book">
-        <img
-          class="books__book--front"
-          src="https://c4.wallpaperflare.com/wallpaper/461/115/579/disney-mulan-hd-wallpaper-preview.jpg"
-          alt="cover"
-        />
-      </div>
-      <div class="books__book book">
-        <img
-          class="books__book--front"
-          src="https://c4.wallpaperflare.com/wallpaper/461/115/579/disney-mulan-hd-wallpaper-preview.jpg"
-          alt="cover"
-        />
-      </div>
-    </section>
-
-    <script src="../scripts/Books/index.js"></script>
+    <script type="module" src="../scripts/Books/index.js"></script>
   </body>
 </html>

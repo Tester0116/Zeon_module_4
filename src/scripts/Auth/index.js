@@ -2,10 +2,33 @@ import { signInApi, signUpApi } from '../../api/index.js'
 
 const formBox = document.getElementById('formBox')
 
-// ***** SIGN UP *****
+// ******************** START SIGN IN ********************
+const signInForm = document.getElementById('signInForm')
+const username = document.getElementById('username')
+const password = document.getElementById('password')
+const slideToSignIn = document.getElementById('slideSignIn')
+const signInErrorText = document.getElementById('signInErrorText')
+const signInBtn = document.getElementById('signInBtn')
+
+const signInSlide = () => {
+  formBox.classList.remove('active')
+}
+
+const signIn = (e) => {
+  e.preventDefault()
+  signInApi(username.value, password.value, signInBtn)
+}
+
+slideToSignIn?.addEventListener('click', signInSlide)
+signInForm?.addEventListener('submit', signIn)
+
+// ******************** END SIGN IN ********************
+
+// ******************** START SIGN UP ********************
 const signUpForm = document.getElementById('signUpForm')
-const signUpBtn = document.getElementById('signUpBtn')
+const slideToSignUp = document.getElementById('slideSignUp')
 const signUpError = document.getElementById('signUpError')
+const signUpBtn = document.getElementById('signUpBtn')
 
 const signUpSlide = () => {
   formBox.classList.add('active')
@@ -29,32 +52,19 @@ const signUp = (e) => {
   signUpError.classList.remove('error')
   signUpError.textContent = ' '
 
-  signUpApi(signUpUsername, signUpName, signUpFirstPassword, signUpAge)
+  signUpApi(
+    signUpUsername,
+    signUpName,
+    signUpFirstPassword,
+    signUpAge,
+    signUpBtn
+  )
 }
 
-signUpBtn.addEventListener('click', signUpSlide)
-signUpForm.addEventListener('submit', signUp)
+slideToSignUp?.addEventListener('click', signUpSlide)
+signUpForm?.addEventListener('submit', signUp)
 
-// ******************** START SIGN IN ********************
-const signInForm = document.getElementById('signInForm')
-const username = document.getElementById('username')
-const password = document.getElementById('password')
-const signInBtn = document.getElementById('signInBtn')
-const signInErrorText = document.getElementById('signInErrorText')
-
-const signInSlide = () => {
-  formBox.classList.remove('active')
-}
-
-const signIn = (e) => {
-  e.preventDefault()
-  signInApi(username.value, password.value)
-}
-
-signInBtn.addEventListener('click', signInSlide)
-signInForm.addEventListener('submit', signIn)
-
-// ******************** END SIGN IN ********************
+// ******************** END SIGN UP ********************
 
 export const getBackError = (errText, type, auth) => {
   const element = auth === 'signIn' ? signInErrorText : signUpError
