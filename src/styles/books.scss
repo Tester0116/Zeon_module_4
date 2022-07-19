@@ -1,7 +1,139 @@
 .books-page {
-  background: rgb(230, 230, 230);
+  background: linear-gradient(45deg, #03a9f4, #ff0058);
+  // background: rgba(0, 0, 0, 0.1);
   height: 100%;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  flex-direction: column;
+  padding: 20px 0;
+  color: white;
+}
+.delete-book {
+  @include popup;
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  &__btn {
+    cursor: pointer;
+    margin-top: 20px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    user-select: none;
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    padding: 10px;
+    border: none;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+    margin-left: 40px;
+
+    &.red {
+      background-color: #dc3545;
+      border-color: #dc3545;
+      margin-left: 0;
+      box-shadow: 0 0 0 0.2rem rgba(#dc3545, 0.5);
+    }
+  }
+}
+.add-book {
+  @include popup;
+  background: rgba(black, 0.2);
+  overflow: auto;
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__container {
+    @include flex-center-block;
+    flex-direction: column;
+    background: rgba(#000000, 0.9);
+    border-color: rgb(0, 0, 150);
+    box-shadow: 0 0 20px 0.3rem rgba(white, 0.5);
+    border-radius: 20px;
+    padding: 20px;
+    min-width: 300px;
+
+    &--title {
+      margin-bottom: 20px;
+    }
+
+    &--input {
+      outline: none;
+      border: none;
+      background-color: rgba(white, 0.2);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: white;
+      margin-top: 10px;
+    }
+    &--text-area {
+      border: 2px solid rgb(122, 122, 122);
+      padding: 10px;
+      max-width: 500px;
+      border-radius: 0.5rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin: 20px 0;
+    }
+    span:not(.tags) {
+      user-select: none;
+      display: inherit;
+      background-color: rgba(255, 255, 255, 0.1);
+
+      padding: 0.3rem 1rem;
+      border-radius: 50vw;
+      margin: 0.1rem;
+      font-size: 0.7rem;
+      display: inline-block;
+      cursor: pointer;
+
+      &.incorrect {
+        background-color: #dc3545;
+      }
+
+      &::after {
+        content: 'x';
+        font-size: 0.8rem;
+        margin-left: 5px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+    .ps {
+      font-size: 0.6rem;
+      font-weight: 100;
+      color: rgba(255, 255, 255, 0.7);
+      & > i {
+        color: yellow;
+      }
+    }
+    .close {
+      width: 8px;
+      height: 8px;
+    }
+
+    &--btn {
+      width: 150px;
+      background: #292929;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      margin-top: 10px;
+      color: white;
+      &:active,
+      &.red {
+        background: #f43648;
+      }
+    }
+  }
 }
 .books {
   transform-style: preserve-3d;
@@ -114,7 +246,6 @@
       position: absolute;
       opacity: 0;
       bottom: 10px;
-      z-index: 200;
       right: 0;
       width: 100%;
       height: auto;
@@ -135,6 +266,38 @@
     }
     &--delete {
       margin-left: 30px;
+      cursor: pointer;
+    }
+  }
+  &-page__add-btn {
+    position: relative;
+    display: inline-flex;
+    padding: 10px 30px;
+    background: #363636;
+    color: white;
+    letter-spacing: 1px;
+    overflow: hidden;
+    border: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: var(--y);
+      left: var(--x);
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: #f43648;
+      transition: width 0.5s, height 0.5s;
+    }
+    &:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    & > span {
+      position: relative;
+      z-index: 1;
     }
   }
 }

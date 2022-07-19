@@ -1,6 +1,41 @@
 import { getBackError } from '../scripts/Auth/index.js'
 import { _renderBooks } from '../scripts/Books/index.js'
 
+// ******************** START CREATE BOOK ********************
+export const addBookApi = async (
+  token,
+  name,
+  author,
+  isFavorite = false,
+  publishYear,
+  publishHouse,
+  pagesNumber,
+  genres,
+  originalLanguage
+) => {
+  await fetch('http://localhost:1717/books/create', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      'x-auth': token,
+    },
+    body: JSON.stringify({
+      name: name,
+      author: author,
+      isFavorite: isFavorite,
+      publishYear: Number(publishYear),
+      publishHouse: publishHouse,
+      pagesNumber: Number(pagesNumber),
+      genres: genres,
+      originalLanguage: originalLanguage,
+    }),
+  })
+    .then((response) => response.json())
+    .then((res) => res.id && location.reload())
+    .catch((err) => console.log(err))
+}
+// ******************** END CREATE BOOK ********************
+
 // ******************** START GET BOOKS ********************
 export const getBooksApi = async (token) => {
   await fetch('http://localhost:1717/books', {

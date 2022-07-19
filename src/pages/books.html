@@ -8,6 +8,90 @@
   </head>
   <body>
     <div class="books-page">
+      <!-- ***** START DELETE POPUP ***** -->
+      <div class="delete-book" id="deleteBookPopup">
+        <h1>Do you really wanna delete?</h1>
+        <div class="delete-book__buttons">
+          <button class="delete-book__btn red" id="yes">YES</button>
+          <button class="delete-book__btn green" id="no">NO</button>
+        </div>
+      </div>
+      <!-- ***** END DELETE POPUP ***** -->
+
+      <!-- ***** START ADD BOOK POPUP ***** -->
+      <div class="add-book" id="addBookPopup">
+        <form class="add-book__container" id="addBookForm">
+          <h2 class="add-book__container--title">Add Book</h2>
+          <input
+            class="add-book__container--input"
+            id="name"
+            type="text"
+            placeholder="name"
+            required
+          />
+          <input
+            class="add-book__container--input"
+            id="author"
+            type="text"
+            placeholder="author"
+            required
+          />
+          <input
+            class="add-book__container--input"
+            id="year"
+            type="number"
+            placeholder="publish year"
+          />
+          <input
+            class="add-book__container--input"
+            id="house"
+            type="text"
+            placeholder="publish house"
+          />
+          <input
+            class="add-book__container--input"
+            id="pagesNumber"
+            type="number"
+            placeholder="pages number"
+          />
+          <input
+            class="add-book__container--input"
+            id="language"
+            type="text"
+            placeholder="original language"
+          />
+          <div class="add-book__container--text-area" id="addBookTextArea">
+            <div class="label">
+              Genres
+              <b class="ps">
+                <i>*</i>
+                press the space bar to set the genre
+                <i>*</i>
+              </b>
+            </div>
+            <p class="tags"></p>
+            <input
+              class="add-book__container--input"
+              id="genres"
+              type="text"
+              placeholder="genres"
+            />
+          </div>
+
+          <button class="add-book__container--btn" type="submit">
+            Add new book
+          </button>
+          <button
+            class="add-book__container--btn red"
+            type="button"
+            id="hideBookPopup"
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
+      <!-- ***** END ADD BOOK POPUP ***** -->
+
       <h1 class="text-center">List of Books</h1>
       <section class="books">
         <div class="loader-block" id="booksLoader">
@@ -17,6 +101,9 @@
           <div class="loader-elements black"></div>
         </div>
       </section>
+      <button class="books-page__add-btn" id="showAddBookPopup">
+        <span>Add Book</span>
+      </button>
     </div>
 
     <script type="module" src="../scripts/Books/index.js"></script>
