@@ -31,7 +31,10 @@ export const addBookApi = async (
     }),
   })
     .then((response) => response.json())
-    .then((res) => res.id && location.reload())
+    .then(
+      (res) => console.log(res)
+      // res.id && location.reload()
+    )
     .catch((err) => console.log(err))
 }
 // ******************** END CREATE BOOK ********************
@@ -85,7 +88,7 @@ export const favoriteBookApi = async (token, id, isFavorite = false) => {
     }),
   })
     .then((response) => response.json())
-    .then((res) => console.log(res))
+    .then((res) => console.log('success set favorite'))
     .catch((err) => console.log(err))
 }
 // ******************** END FAVORITE BOOK ********************

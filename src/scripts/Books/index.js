@@ -19,7 +19,6 @@ const toggleActive = (book) => {
 const storeData = JSON.parse(localStorage.getItem('userData'))
 const username = document.getElementById('localUsername')
 username ? (username.textContent = storeData.username) : null
-// console.log(username)
 const exitBtn = document.getElementById('exitBtn')
 exitBtn?.addEventListener('click', exit)
 
@@ -137,7 +136,6 @@ setTimeout(() => {
   const favoritesIcon = document.querySelectorAll('.favorite')
   const deleteIcon = document.querySelectorAll('.delete')
   const questionIcon = document.querySelectorAll('.question')
-  const editIcon = document.querySelectorAll('.rewrite')
 
   favoritesIcon?.forEach((el) =>
     el.addEventListener('click', (e) => favoriteHandler(el, e))
@@ -273,10 +271,25 @@ setTimeout(() => {
     el.addEventListener('click', (e) => showEditPopup(e, el))
   )
 }, 1000)
+
+// *** start tag actions ***
+const editGenreInput = document.getElementById('editGenres')
+const editTextArea = document.getElementById('editTextArea')
+const editTags_container = document.querySelector('.editTags')
+const editGenresArray = []
+
+editTextArea?.addEventListener('click', () => focusArea(text_area, genreInput))
+
+editGenreInput?.addEventListener('keyup', (e) =>
+  splitTag(e, editGenreInput, editGenresArray, editTags_container)
+)
+
+// *** end tag actions ***
+
 // get inputs
 const editName = document.getElementById('editName')
 const editAuthor = document.getElementById('editAuthor')
-const editpublishYear = document.getElementById('editYear')
+const editPublishYear = document.getElementById('editYear')
 const editHouse = document.getElementById('editHouse')
 const editPagesNumber = document.getElementById('editPagesNumber')
 const editLanguage = document.getElementById('editLanguage')
@@ -291,10 +304,10 @@ const editBookHandler = (e) => {
     editName.value,
     editAuthor.value,
     false,
-    editpublishYear.value,
+    editPublishYear.value,
     editHouse.value,
     editPagesNumber.value,
-    [],
+    editGenresArray,
     editLanguage.value
   )
 }
