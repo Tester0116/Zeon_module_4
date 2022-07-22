@@ -16,6 +16,18 @@ const toggleActive = (book) => {
   book.classList.toggle('active')
 }
 
+const storeData = JSON.parse(localStorage.getItem('userData'))
+const username = document.getElementById('localUsername')
+username ? (username.textContent = storeData.username) : null
+// console.log(username)
+const exitBtn = document.getElementById('exitBtn')
+exitBtn?.addEventListener('click', exit)
+
+function exit(params) {
+  localStorage.removeItem('token')
+  localStorage.removeItem('userData')
+  location.replace('/')
+}
 // ******************** START FETCH BOOKS ********************
 
 const token = localStorage.getItem('token')
