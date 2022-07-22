@@ -1,4 +1,11 @@
-import { addBookApi, deleteBookApi, getBooksApi } from '../../api/index.js'
+import {
+  addBookApi,
+  deleteBookApi,
+  editBookApi,
+  favoriteBookApi,
+  getBooksApi,
+  getBooksInfoApi,
+} from '../../api/index.js'
 import { checkToken } from '../checkToken.js'
 
 checkToken()
@@ -26,7 +33,7 @@ export const _renderBooks = (booksData) => {
     element.innerHTML = `
     <img
     class="books__book--front"
-    src="https://images.wallpaperscraft.ru/image/single/kub_figura_temnyj_142157_1280x720.jpg"
+    src="../../assets/img/front.jpg"
     alt="front"
   />
   <p class='books__book--author'>${book.author}</p>
@@ -41,12 +48,26 @@ export const _renderBooks = (booksData) => {
 <input class="books__book--favorite favorite" type="checkbox" ${
       book.isFavorite && 'checked'
     }/>
-            <i class="favorite-icon"></i>
+<i class="favorite-icon"></i>
 <img
   src="../assets/svg/trash-icon.svg"
   class="books__book--delete delete"
-  alt="unfavorite icon"
+  alt="trash icon"
+/>
+</div>
 
+<div class="books__book_more-info-block">
+<img
+  class="books__book_more-info-block--question question"
+  src="../assets/img/question-icon.png"
+  alt="info icon"
+  title="click to learn more"
+/>
+<img
+  src="../assets/img/rewrite-icon.png"
+  class="books__book_more-info-block--rewrite rewrite"
+  alt="pen icon"
+  title="click to edit"
 />
 </div>
 `
@@ -59,10 +80,14 @@ export const _renderBooks = (booksData) => {
 // ******************** START FAVORITE ACTIONS ********************
 const favoriteHandler = (el, e) => {
   e.stopPropagation()
+  const id = el.parentNode.parentNode.id
+
+  favoriteBookApi(token, id, el.checked)
 }
 const deletePopup = document.getElementById('deleteBookPopup')
 const yes = document.getElementById('yes')
 const no = document.getElementById('no')
+const moreInfoBlock = document.getElementById('moreInfoBlock')
 
 const hidePopup = () => deletePopup.classList.remove('active')
 
@@ -80,17 +105,39 @@ const deleteHandler = (el, e) => {
   no.addEventListener('click', hidePopup)
 }
 
+const _moreInfoHandler = (el, e) => {
+  e.stopPropagation()
+  // start get elements
+  const moreInfoContainer = document.getElementById('moreInfoContainer')
+  const hideInfoBlockBtn = document.querySelectorAll('.hideInfoBlock')
+  // end get elements
+
+  moreInfoBlock.classList.add('active')
+  const id = el.parentNode.parentNode.id
+
+  getBooksInfoApi(token, id, moreInfoContainer)
+  hideInfoBlockBtn?.forEach((el) =>
+    el.addEventListener('click', () => moreInfoBlock.classList.remove('active'))
+  )
+}
+
 setTimeout(() => {
   const favoritesIcon = document.querySelectorAll('.favorite')
   const deleteIcon = document.querySelectorAll('.delete')
+  const questionIcon = document.querySelectorAll('.question')
+  const editIcon = document.querySelectorAll('.rewrite')
 
-  favoritesIcon?.forEach((el, index) =>
+  favoritesIcon?.forEach((el) =>
     el.addEventListener('click', (e) => favoriteHandler(el, e))
   )
-  deleteIcon?.forEach((el, index) =>
+  deleteIcon?.forEach((el) =>
     el.addEventListener('click', (e) => deleteHandler(el, e))
   )
+  questionIcon?.forEach((el) =>
+    el.addEventListener('click', (e) => _moreInfoHandler(el, e))
+  )
 }, 1000)
+
 // ******************** END FAVORITE ACTIONS ********************
 
 // ******************** START ADD BOOKS ********************
@@ -122,38 +169,39 @@ showAddBook?.addEventListener('click', toggleAddBookPopup)
 hideAddBook?.addEventListener('click', toggleAddBookPopup)
 
 // *** start tag actions ***
-const tagInput = document.getElementById('genres')
+const genreInput = document.getElementById('genres')
 const text_area = document.getElementById('addBookTextArea')
 const tags_container = document.querySelector('.tags')
 const genres = []
 
-text_area?.addEventListener('click', () => {
-  text_area.classList.add('focused')
-  tagInput.focus()
-})
+const focusArea = (area, genre) => {
+  area.classList.add('focused')
+  genre.focus()
+}
 
-tagInput?.addEventListener('blur', () => {
-  if (tags_container.innerText == '') text_area.classList.remove('focused')
-  else text_area.classList.add('focused')
-})
+text_area?.addEventListener('click', () => focusArea(text_area, genreInput))
 
-tagInput?.addEventListener('keyup', (e) => {
+const splitTag = (e, genre, array, tagsBlock) => {
   if (e.code == 'Space') {
-    if (tagInput.value !== ' ') {
-      createSpan(tagInput.value)
-      genres.push(tagInput.value)
+    if (genre.value !== ' ') {
+      createSpan(array, genre.value, tagsBlock)
+      array.push(genre.value)
     }
-    tagInput.value = ''
+    genre.value = ''
   }
-})
+}
 
-function createSpan(span_text) {
-  if (genres.includes(span_text)) return
+genreInput?.addEventListener('keyup', (e) =>
+  splitTag(e, genreInput, genres, tags_container)
+)
+
+function createSpan(array, span_text, tagsBlock) {
+  if (array.includes(span_text)) return
   const tag = document.createElement('span')
 
   tag.textContent = span_text
 
-  tags_container.append(tag)
+  tagsBlock.append(tag)
 
   const tags = document.querySelectorAll('.tags span')
   removeTag(tags)
@@ -170,11 +218,10 @@ function removeTag(tags) {
 }
 // *** end tag actions ***
 
-const bookForm = document.getElementById('addBookForm')
+const addBookForm = document.getElementById('addBookForm')
 
 const addBookHandler = (e) => {
   e.preventDefault()
-  console.log(originalLanguage.value)
   addBookApi(
     token,
     name.value,
@@ -188,6 +235,58 @@ const addBookHandler = (e) => {
   )
 }
 
-bookForm?.addEventListener('submit', addBookHandler)
+addBookForm?.addEventListener('submit', addBookHandler)
 
 // ******************** END ADD BOOKS ********************
+
+// ******************** START EDIT BOOK ********************
+const hideEditBook = document.getElementById('hideEditBookPopup')
+const editBookPopup = document.getElementById('editBookPopup')
+
+let id = ''
+const toggleEditPopup = () => editBookPopup.classList.toggle('active')
+
+const showEditPopup = (e, el) => {
+  e.stopPropagation()
+  id = el.parentNode.parentNode.id
+  toggleEditPopup()
+}
+
+hideEditBook?.addEventListener('click', toggleEditPopup)
+
+setTimeout(() => {
+  const showEditBook = document.querySelectorAll('.rewrite')
+
+  showEditBook?.forEach((el) =>
+    el.addEventListener('click', (e) => showEditPopup(e, el))
+  )
+}, 1000)
+// get inputs
+const editName = document.getElementById('editName')
+const editAuthor = document.getElementById('editAuthor')
+const editpublishYear = document.getElementById('editYear')
+const editHouse = document.getElementById('editHouse')
+const editPagesNumber = document.getElementById('editPagesNumber')
+const editLanguage = document.getElementById('editLanguage')
+
+const editBookForm = document.getElementById('editBookForm')
+
+const editBookHandler = (e) => {
+  e.preventDefault()
+  editBookApi(
+    token,
+    id,
+    editName.value,
+    editAuthor.value,
+    false,
+    editpublishYear.value,
+    editHouse.value,
+    editPagesNumber.value,
+    [],
+    editLanguage.value
+  )
+}
+
+editBookForm?.addEventListener('submit', editBookHandler)
+
+// ******************** END EDIT BOOK ********************

@@ -4,15 +4,6 @@
   align-items: center;
 }
 
-@mixin parallax-bg($img-url) {
-  height: 100vh;
-  background-image: url($img-url);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 @mixin popup {
   position: fixed;
   top: 0;

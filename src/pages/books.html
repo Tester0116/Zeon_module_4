@@ -8,6 +8,134 @@
   </head>
   <body>
     <div class="books-page">
+      <!-- ***** START MORE INFO POPUP ***** -->
+      <div class="more-info moreInfoBlock" id="moreInfoBlock">
+        <div class="more-info__container">
+          <div class="more-info__container--dynamic" id="moreInfoContainer">
+            <h2
+              class="more-info__container--name text-center"
+              id="moreInfo_name"
+            >
+              About book
+            </h2>
+            <div class="more-info__container--sides">
+              <div class="more-info__container--leftSide">
+                <h4 class="more-info__container--author" id="moreInfo_author">
+                  Author: <span></span>
+                </h4>
+                <h4
+                  class="more-info__container--language"
+                  id="moreInfo_language"
+                >
+                  original language: <span></span>
+                </h4>
+                <h4 class="more-info__container--genres" id="moreInfo_genres">
+                  genres: <span></span>
+                </h4>
+              </div>
+
+              <div class="more-info__container--rightSide">
+                <h4 class="more-info__container--year" id="moreInfo_year">
+                  publish year: <span></span>
+                </h4>
+                <h4 class="more-info__container--pages" id="moreInfo_pages">
+                  pages number: <span></span>
+                </h4>
+                <h4 class="more-info__container--house" id="moreInfo_house">
+                  publish house: <span></span>
+                </h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="more-info__container--btnBlock" style="margin-bottom: 0">
+            <span class="more-info__container--mas hideInfoBlock">cancel</span>
+            <button
+              class="more-info__container--btn hideInfoBlock"
+              type="button"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- ***** END MORE INFO POPUP ***** -->
+
+      <!-- ***** START EDIT POPUP ***** -->
+      <div class="edit-book" id="editBookPopup">
+        <form class="add-book__container" id="editBookForm">
+          <h2 class="add-book__container--title">Edit the book</h2>
+
+          <input
+            class="add-book__container--input"
+            id="editName"
+            type="text"
+            placeholder="name"
+            required
+          />
+          <input
+            class="add-book__container--input"
+            id="editAuthor"
+            type="text"
+            placeholder="author"
+            required
+          />
+          <input
+            class="add-book__container--input"
+            id="editYear"
+            type="number"
+            placeholder="publish year"
+          />
+          <input
+            class="add-book__container--input"
+            id="editHouse"
+            type="text"
+            placeholder="publish house"
+          />
+          <input
+            class="add-book__container--input"
+            id="editPagesNumber"
+            type="number"
+            placeholder="pages number"
+          />
+          <input
+            class="add-book__container--input"
+            id="editLanguage"
+            type="text"
+            placeholder="original language"
+          />
+          <div class="add-book__container--text-area" id="editTextArea">
+            <div class="label">
+              Genres
+              <b class="ps">
+                <i>*</i>
+                press the space bar to set the genre
+                <i>*</i>
+              </b>
+            </div>
+            <p class="editTags"></p>
+            <input
+              class="add-book__container--input"
+              id="editGenres"
+              type="text"
+              placeholder="genres"
+            />
+          </div>
+
+          <button class="add-book__container--btn" type="submit">
+            Add new book
+          </button>
+          <button
+            class="add-book__container--btn red"
+            type="button"
+            id="hideEditBookPopup"
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
+      <!-- ***** END EDIT POPUP ***** -->
+
       <!-- ***** START DELETE POPUP ***** -->
       <div class="delete-book" id="deleteBookPopup">
         <h1>Do you really wanna delete?</h1>
@@ -22,6 +150,7 @@
       <div class="add-book" id="addBookPopup">
         <form class="add-book__container" id="addBookForm">
           <h2 class="add-book__container--title">Add Book</h2>
+
           <input
             class="add-book__container--input"
             id="name"
@@ -92,6 +221,17 @@
       </div>
       <!-- ***** END ADD BOOK POPUP ***** -->
 
+      <div class="personal-info">
+        <div class="personal-info__ava-block">
+          <img
+            class="personal-info__ava-block--img"
+            src="../assets/img/ava-icon.png"
+            alt="ava"
+          />
+          <span id="localUsername">username</span>
+        </div>
+        <span id="exitBtn" class="pointer">Exit</span>
+      </div>
       <h1 class="text-center">List of Books</h1>
       <section class="books">
         <div class="loader-block" id="booksLoader">
